@@ -1,0 +1,97 @@
+
+<html>
+   <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <title> Login</title>
+       <link href= "/styles/style.css" rel= "stylesheet" type="text/css"/>
+              <style>
+           body{
+        background-image: url("/images/login.jpg");
+        background-repeat: repeat;
+        background-size: cover;
+}
+       </style>
+   </head>
+   <body>
+     <a class="logo" href="/"> <img src="/images/logo.png"/> </a>
+
+       <!--Code for Navigation Bar-->
+       <div id= "nav">
+            <div class="topmenu">
+
+                <a href="/search">Search for Destination</a>
+                {% if session ['logged_in']== True %}
+                <a href="/history">History</a>
+                {% endif %}
+                {% if session ['logged_in']== True %}
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/login">Login/Sign Up</a>
+                {% endif %}
+              <a class="loginname">
+                {% for entry1 in rv %}
+                    Hi {{entry1 [0]}}
+                   {% endfor %}
+            </a>
+                <a href="javascript:void(0);" class="icon" onclick="resp()"> <i class="fa fa-bars"></i>  </a>
+            </div>
+        </div>
+
+
+   <script>
+       function resp() {
+    var x = document.getElementById("nav");
+    if (x.className === "topmenu") {
+        x.className += " responsive";
+    } else {
+        x.className = "topmenu";
+    }
+}
+   </script>
+       <!--End of Navigation Bar-->
+
+       <!--Start of login/singup box code-->
+       <div class= "signup">
+        <div class= "form">
+
+            <form class="register" action="register" method=post>
+
+           <label>First Name</label> <input type="text" placeholder= "Jude" required name="firstname"/>
+           <p>
+           <label>last Name</label> <input type="text" placeholder= "Doe" required name="lastname"/>
+           <p>
+            <label>Email</label><input type= "text" required placeholder="judedoe@example.com" name="email"/>
+            <p>
+            <label>Password</label><input type="password" required name="password" placeholder="password"/>
+
+            <button type="submit" name="btn" value="signup">Join Explorior</button>
+            <p class="optionb"> Existing User? <a href="#"> Login</a></p>
+            </form>
+
+           <form class="login" action="login" method=post>
+                <label>Email</label><input type="text" required name="email" placeholder="jude@example.com"/>
+                <label>Password</label><input type="password" required name="password" placeholder="Password"/>
+                <button type="submit" name="btn" value="signin">Login</button>
+                <p class="optionb"> Not an existing user? <a href="#">Sign Up</a></p>
+           </form>
+
+        </div>
+       </div>
+
+       <script src='https://code.jquery.com/jquery-3.2.1.min.js'>
+       </script>
+
+       <script>
+           $('.optionb a').click(function(){
+            $('form').animate({
+                width:['toggle','swing'],
+                height: ['toggle','swing'],
+                 opacity: "toggle"},"slow");
+           });
+       </script>
+       <!--End of login/signup box code-->
+
+  </body>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <title> Holiday Packages</title>
+       <link href= "/styles/style.css" rel= "stylesheet" type="text/css"/>
+       <style>
+           body{
+        background-image: url("/images/search.jpg");
+        background-repeat: repeat;
+        background-size: cover;
+}
+       </style>
+   </head>
+<body>
+     <a class="logo" href="/"> <img src="/images/logo.png"/> </a>
+
+       <!--Code for Navigation Bar-->
+       <div id= "nav">
+            <div class="topmenu">
+
+                <a href="/search">Search for Destination</a>
+                {% if session ['logged_in']== True %}
+                <a href="/history">History</a>
+                {% endif %}
+                {% if session ['logged_in']== True %}
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/login">Login/Sign Up</a>
+                {% endif %}
+              <a class="loginname">
+                {% for entry1 in rv %}
+                    Hi {{entry1 [0]}}
+                   {% endfor %}
+            </a>
+                <a href="javascript:void(0);" class="icon" onclick="resp()"> <i class="fa fa-bars"></i>  </a>
+            </div>
+        </div>
+
+
+   <script>
+       function resp() {
+    var x = document.getElementById("nav");
+    if (x.className === "topmenu") {
+        x.className += " responsive";
+    } else {
+        x.className = "topmenu";
+    }
+}
+   </script>
+       <!--End of Navigation Bar-->
+
+
+<!--<div id="cover">-->
+  <!--<form method="post" action="/cw3-holiday">-->
+    <!--<div class="tb">-->
+      <!--<div class="td"><input type="text" placeholder="Where to?" required></div>-->
+      <!--<div class="td" id="s-cover">-->
+        <!--<button type="submit">-->
+          <!--<div id="s-circle"></div>-->
+          <!--<span></span>-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</form>-->
+<!--</div>-->
+
+<div id="cover">
+    <form class="searchForm" method="post" action="/holidays">
+        <select class="searchbox" name="searchStr">
+            <option value="" disabled selected hidden>Where to?</option>
+            <option value="Georgia">Georgia</option>
+            <option value="London">London</option>
+            <option value="France">France</option>
+            <option value="Maldives">Maldives</option>
+            <option value="Switzerland">Switzerland</option>
+        </select>
+        <button class="searchBt" type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+    </form>
+
+</div>
+
+
+
+</body>
+</html>
